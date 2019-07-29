@@ -1,0 +1,19 @@
+.temperature {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pollenCount {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dayName {
+    display: flex;
+    justify-content: space-around;
+}
+
+.image {
+    display: flex;
+    justify-content: space-around;
+}
