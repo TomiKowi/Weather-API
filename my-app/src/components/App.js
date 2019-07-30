@@ -13,6 +13,7 @@ class App extends Component {
     windSpeedToday: "",
     windDirectionToday: "",
     pollenCountToday: "",
+    typeToday: "",
   }
 
   componentDidMount() {
@@ -82,6 +83,7 @@ class App extends Component {
             windSpeedToday: data[0].windInfo.speed,
             windDirectionToday: data[0].windInfo.direction,
             pollenCountToday: data[0].pollenCount,
+            typeToday: data[0].type
           })
         })
     }
@@ -92,11 +94,23 @@ class App extends Component {
 
     return (
       <div className="App">
-        <select onChange={this.handleChange}>
-          <option value="" hidden>Select City</option>
-          {cities}
-        </select>
-        <Result poll={this.state.pollenCountToday} wDire={this.state.windDirectionToday} wSpeed={this.state.windSpeedToday} humi={this.state.humidityToday} prec={this.state.precipitationToday} temp={this.state.fullData} />
+        <div className="form">
+          <select className="select" onChange={this.handleChange}>
+            <option value="" hidden>Select City</option>
+            {cities}
+          </select>
+        </div>
+        <div className="result">
+          <Result
+            typTo={this.state.typeToday}
+            poll={this.state.pollenCountToday}
+            wDire={this.state.windDirectionToday}
+            wSpeed={this.state.windSpeedToday}
+            humi={this.state.humidityToday}
+            prec={this.state.precipitationToday}
+            full={this.state.fullData}
+          />
+        </div>
       </div>
     )
   }
