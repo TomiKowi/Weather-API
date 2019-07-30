@@ -102,13 +102,13 @@ class App extends Component {
         </div>
         <div className="result">
           <Result
-            typTo={this.state.typeToday}
-            poll={this.state.pollenCountToday}
-            wDire={this.state.windDirectionToday}
-            wSpeed={this.state.windSpeedToday}
-            humi={this.state.humidityToday}
-            prec={this.state.precipitationToday}
-            full={this.state.fullData}
+            typeToday={this.state.typeToday}
+            pollenCountToday={this.state.pollenCountToday}
+            windDirection={this.state.windDirectionToday}
+            windSpeed={this.state.windSpeedToday}
+            humidityToday={this.state.humidityToday}
+            precipitationToday={this.state.precipitationToday}
+            fullData={this.state.fullData}
           />
         </div>
       </div>

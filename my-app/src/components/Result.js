@@ -10,15 +10,15 @@ import RainLight from '../images/RainLight.png'
 
 const Result = (props) => {
 
-    const { typTo, poll, wDire, wSpeed, humi, prec, full } = props;
+    const { typeToday, pollenCountToday, windDirection, windSpeed, humidityToday, precipitationToday, fullData } = props;
 
-    const temperatures = full.map(({ date, temperature }) => {
+    const temperatures = fullData.map(({ date, temperature }) => {
         return <div key={date}><p>{temperature}&#176;</p></div>
     })
-    const pollenCounts = full.map(({ date, pollenCount }) => {
+    const pollenCounts = fullData.map(({ date, pollenCount }) => {
         return <div key={date}><p>Pollen: {pollenCount}</p></div>
     })
-    const dates = full.map(({ date }) => {
+    const dates = fullData.map(({ date }) => {
 
         const dateToday = new Date(date);
         const weekday = new Array(7);
@@ -35,7 +35,7 @@ const Result = (props) => {
     })
 
 
-    const images = full.map(({ date, type }) => {
+    const images = fullData.map(({ date, type }) => {
         if (type === "Sunny") {
             return <img key={date} src={Sunny} alt={type} />
         } else if (type === "PartlyCloudy") {
@@ -54,7 +54,7 @@ const Result = (props) => {
             <div className="todayWeather">
                 <div className="today">
                     {dates[0]}
-                    {typTo}
+                    {typeToday}
                 </div>
                 <div className="todayInfo">
                     <div className="valueLeft">
@@ -62,10 +62,10 @@ const Result = (props) => {
                         <div>{temperatures[0]}</div>
                     </div>
                     <div className="valueRight">
-                        {prec ? <p>Precipitation: <span>{prec}%</span></p> : null}
-                        {humi ? <p>Humidity: <span>{humi}%</span></p> : null}
-                        {wSpeed ? <p>Wind: <span>{wSpeed}mph {wDire}</span></p> : null}
-                        {poll ? <p>Pollen Count: <span>{poll}</span></p> : null}
+                        {precipitationToday ? <p>Precipitation: <span>{precipitationToday}%</span></p> : null}
+                        {humidityToday ? <p>Humidity: <span>{humidityToday}%</span></p> : null}
+                        {windSpeed ? <p>Wind: <span>{windSpeed}mph {windDirection}</span></p> : null}
+                        {pollenCountToday ? <p>Pollen Count: <span>{pollenCountToday}</span></p> : null}
                     </div>
                 </div>
             </div>
