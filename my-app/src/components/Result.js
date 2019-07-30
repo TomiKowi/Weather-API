@@ -10,48 +10,71 @@ import RainLight from '../images/RainLight.png'
 
 const Result = (props) => {
 
-    const temperatures = props.temp.map(({ date, temperature }) => {
-        return <div key={date}><p>{temperature}</p></div>
+    const { typTo, poll, wDire, wSpeed, humi, prec, full } = props;
+
+    const temperatures = full.map(({ date, temperature }) => {
+        return <div key={date}><p>{temperature}&#176;</p></div>
     })
-    const pollenCounts = props.temp.map(({ date, pollenCount }) => {
+    const pollenCounts = full.map(({ date, pollenCount }) => {
         return <div key={date}><p>Pollen: {pollenCount}</p></div>
     })
-    const dates = props.temp.map(({ date }) => {
-        return <div key={date}><p>{date}.</p></div>
+    const dates = full.map(({ date }) => {
+
+        const dateToday = new Date(date);
+        const weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+        const day = weekday[dateToday.getDay()]
+        return <p key={date}>{day}</p>
+
     })
 
 
-    const images = props.temp.map(({ date, type }) => {
+    const images = full.map(({ date, type }) => {
         if (type === "Sunny") {
-            return <div key={date}><img src={Sunny} alt="" /></div>
+            return <img key={date} src={Sunny} alt={type} />
         } else if (type === "PartlyCloudy") {
-            return <div key={date}><img src={PartlyCloudy} alt="" /></div>
+            return <img key={date} src={PartlyCloudy} alt={type} />
         } else if (type === "RainAndCloudy") {
-            return <div key={date}><img src={RainAndCloudy} alt="" /></div>
+            return <img key={date} src={RainAndCloudy} alt={type} />
         } else if (type === "RainLight") {
-            return <div key={date}><img src={RainLight} alt="" /></div>
+            return <img key={date} src={RainLight} alt={type} />
         } else if (type === "Cloudy") {
-            return <div key={date}><img src={Cloudy} alt="" /></div>
+            return <img key={date} src={Cloudy} alt={type} />
         } return null
     })
 
     return (
         <div className="resultContainer">
             <div className="todayWeather">
-                <div className="todayImage">
-                    {images[0]}
+                <div className="today">
+                    {dates[0]}
+                    {typTo}
                 </div>
-                {props.prec ? <p>Precipitation: {props.prec}%</p> : null}
-                {props.humi ? <p>Humidity: {props.humi}%</p> : null}
-                {props.wSpeed ? <p>Wind: {props.wSpeed}mph {props.wDire}</p> : null}
-                {props.poll ? <p>Pollen Count: {props.poll}</p> : null}
+                <div className="todayInfo">
+                    <div className="valueLeft">
+                        <div>{images[0]}</div>
+                        <div>{temperatures[0]}</div>
+                    </div>
+                    <div className="valueRight">
+                        {prec ? <p>Precipitation: <span>{prec}%</span></p> : null}
+                        {humi ? <p>Humidity: <span>{humi}%</span></p> : null}
+                        {wSpeed ? <p>Wind: <span>{wSpeed}mph {wDire}</span></p> : null}
+                        {poll ? <p>Pollen Count: <span>{poll}</span></p> : null}
+                    </div>
+                </div>
             </div>
             <div className="weeklyWeather">
-                <div className="image">
-                    {images}
-                </div>
                 <div className="dayName">
                     {dates}
+                </div>
+                <div className="image">
+                    {images}
                 </div>
                 <div className="temperature">
                     {temperatures}
