@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://TomiKowi.github.io/Weather-API",
+  "homepage": "https://tomikowi.github.io/Weather-API",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
